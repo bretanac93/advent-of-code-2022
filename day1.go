@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"sort"
 	"strconv"
 )
@@ -15,28 +13,10 @@ func handleErr(err error) {
 }
 
 func main() {
-	data := readFile("./day1.input.txt")
+	data := ReadFile("./input/day1.txt")
 
 	fmt.Println(GreatestCalories(data))
 	fmt.Println(ThreeGreatestCalories(data))
-}
-
-func readFile(path string) []string {
-	reader, err := os.Open(path)
-	handleErr(err)
-
-	defer reader.Close()
-
-	fileScanner := bufio.NewScanner(reader)
-	fileScanner.Split(bufio.ScanLines)
-
-	var fileLines []string
-
-	for fileScanner.Scan() {
-		fileLines = append(fileLines, fileScanner.Text())
-	}
-
-	return fileLines
 }
 
 func GreatestCalories(data []string) int {
